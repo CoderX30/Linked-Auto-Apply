@@ -2,7 +2,7 @@
 LinkedAutoApply automates job applications and connection requests on LinkedIn. Using Python and Selenium, it logs in, searches for jobs, applies via "Easy Apply," and sends personalized connection requests to professionals at targeted companies. Desktop notifications keep users informed of progress. Use responsibly per LinkedIn’s terms.
 
 
-# Key Features:
+### Key Features:
 1. Automated LinkedIn Login: Securely logs into your LinkedIn account using provided credentials.
 2. Job Search & Filter: Automatically searches for jobs using keywords and applies filters like "Experience Level" and "Date Posted."
 3. Easy Apply Automation: Automatically fills out job application forms using the "Easy Apply" feature, with checks to ensure all required fields are completed.
