@@ -10,11 +10,11 @@ LinkedAutoApply automates job applications and connection requests on LinkedIn. 
 5. Desktop Notifications: Provides real-time notifications to keep the user informed of key actions taken by the script.
 6. Safe Execution: Includes features like time delays and error handling to mimic human behavior and avoid detection by LinkedIn’s automated systems.
 
-# Tech Stack:
+### Tech Stack:
 1. Python: The primary programming language.
 2. Selenium: For browser automation.
 3. Plyer: For desktop notifications.
 4. PyAutoGUI: For additional automation tasks as needed.
 
-# Usage:
+### Usage:
 This tool is intended for job seekers who want to automate the repetitive tasks involved in job applications and networking on LinkedIn. It is especially useful for professionals looking to apply for multiple positions quickly while also growing their LinkedIn connections.
