@@ -26,10 +26,12 @@ def automation(linkedin_username, linkedin_password, search_query):
     # print("OPENED CHROME")
 
 
-    options = webdriver.ChromeOptions()
-    options.add_argument("--start-maximized")
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=options)
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")  # Ensures GUI is off
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    driver = webdriver.Chrome(options=chrome_options)
+    print("OPENED CHROME")
 
     # Open LinkedIn login page
     def open_linkedin():
