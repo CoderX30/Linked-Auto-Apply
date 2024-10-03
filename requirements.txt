@@ -1,3 +1,4 @@
 selenium
 plyer
 streamlit
+webdriver-manager
