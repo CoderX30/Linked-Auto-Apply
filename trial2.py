@@ -1,32 +1,34 @@
+import os
 import streamlit as st
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
 import time
 
 # Function to open a URL in a browser using Selenium
 def open_url_in_browser(url):
     try:
-        # Specify the path to the Chromium binary and driver
+        # Get chromium binary path from the environment or set default
+        chrome_bin = os.getenv('CHROME_BIN', '/usr/bin/chromium-browser')
+        chrome_driver_bin = os.getenv('CHROMEDRIVER', '/usr/bin/chromedriver')
+
+        # Configure Selenium options for Chromium
         options = webdriver.ChromeOptions()
-        options.binary_location = "/usr/bin/chromium-browser"  # Path to Chromium
+        options.binary_location = chrome_bin
+        options.add_argument("--headless")  # Run headless for cloud or CI/CD environments
         options.add_argument("--no-sandbox")
-        options.add_argument("--headless")  # To run it in headless mode (if needed)
-        options.add_argument("--disable-gpu")
         options.add_argument("--disable-dev-shm-usage")
 
-        # Initialize the Chromium WebDriver
-        service = Service('/usr/bin/chromedriver')  # Path to Chromium driver
+        # Initialize the WebDriver
+        service = Service(chrome_driver_bin)
         driver = webdriver.Chrome(service=service, options=options)
 
-        # Open the given URL
+        # Open the provided URL
         driver.get(url)
 
-        # Keep the browser open for a certain time (e.g., 10 seconds)
+        # Keep browser open for a while (e.g., 10 seconds)
         time.sleep(10)
-        
-        # Close the browser
         driver.quit()
+
     except Exception as e:
         st.error(f"An error occurred: {e}")
 
