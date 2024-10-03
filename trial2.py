@@ -22,7 +22,7 @@ st.title("Selenium with Streamlit")
 
 # Fetching the page using Selenium
 driver = get_driver()
-driver.get("http://example.com")
+driver.get("http://google.com")
 
 # Display the HTML page source in the Streamlit app
 st.code(driver.page_source)
