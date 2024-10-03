@@ -2,3 +2,4 @@ selenium
 plyer
 streamlit
 webdriver-manager
+chromedriver_autoinstaller
