@@ -6,9 +6,23 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from plyer import notification
 import time
 print("LIBRARIES IMPORTED")
+
+def download_chromedriver():
+  try:
+    driver = webdriver.Chrome(ChromeDriverManager().install())
+    driver.quit()  # Close the browser after verifying download
+    print("chromedriver.exe downloaded successfully!")
+  except Exception as e:
+    print("Error downloading chromedriver:", e)
+
+
+if not os.path.exists("chromedriver.exe"):
+    download_chromedriver()
+
 
 
 def automation(linkedin_username, linkedin_password, search_query):
@@ -18,7 +32,7 @@ def automation(linkedin_username, linkedin_password, search_query):
 
     # Initialize the Chrome driver
 
-    driver_path = 'https://github.com/CoderX30/Linked-Auto-Apply/blob/281e84193e24e3d19f3d56c43c6b48a7cd5c6514/chromedriver.exe'  # Replace with your WebDriver path
+    driver_path = 'chromedriver.exe'  # Replace with your WebDriver path
     service = Service(driver_path)
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")  # Start browser maximized
@@ -381,3 +395,8 @@ def automation(linkedin_username, linkedin_password, search_query):
 
     print("Script execution completed. Press Enter to exit.")
     input()
+
+
+
+
+
