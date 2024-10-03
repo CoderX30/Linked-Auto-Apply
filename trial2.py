@@ -1,52 +1,44 @@
-import os
-import shutil
-
+import streamlit as st
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+import time
 
+# Function to open a URL in a browser using Selenium
+def open_url_in_browser(url):
+    try:
+        # Specify the path to the Chromium binary and driver
+        options = webdriver.ChromeOptions()
+        options.binary_location = "/usr/bin/chromium-browser"  # Path to Chromium
+        options.add_argument("--no-sandbox")
+        options.add_argument("--headless")  # To run it in headless mode (if needed)
+        options.add_argument("--disable-gpu")
+        options.add_argument("--disable-dev-shm-usage")
 
-def get_logpath() -> str:
-    return os.path.join(os.getcwd(), 'selenium.log')
+        # Initialize the Chromium WebDriver
+        service = Service('/usr/bin/chromedriver')  # Path to Chromium driver
+        driver = webdriver.Chrome(service=service, options=options)
 
-def get_chromedriver_path() -> str:
-    return shutil.which('chromedriver')
+        # Open the given URL
+        driver.get(url)
 
+        # Keep the browser open for a certain time (e.g., 10 seconds)
+        time.sleep(10)
+        
+        # Close the browser
+        driver.quit()
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
 
-def get_webdriver_service(logpath) -> Service:
-    service = Service(
-        executable_path=get_chromedriver_path(),
-        log_output=logpath,
-    )
-    return service
+# Streamlit UI
+st.title("URL Opener with Selenium (Chromium)")
 
+# Input for URL
+url = st.text_input("Enter the URL you want to open:")
 
-
-
-
-options = Options()
-options.add_argument("--headless")
-options.add_argument("--no-sandbox")
-options.add_argument("--disable-dev-shm-usage")
-options.add_argument("--disable-gpu")
-options.add_argument("--disable-features=NetworkService")
-options.add_argument("--window-size=1920x1080")
-options.add_argument("--disable-features=VizDisplayCompositor")
-options.add_argument('--ignore-certificate-errors')
-    
-
-
-
-
-logpath = get_logpath()
-service = get_webdriver_service(logpath=logpath)
-
-
-
-print(logpath)
-
-def get_ip_address(options, service):
-    with webdriver.Chrome(options=options, service=service) as driver:
-        driver.get("https://www.google.com/")
-        print(driver.find_element(By.TAG_NAME, "body").text)
+# Button to trigger the URL opening
+if st.button("Open URL"):
+    if url:
+        open_url_in_browser(url)
+    else:
+        st.error("Please enter a valid URL.")
