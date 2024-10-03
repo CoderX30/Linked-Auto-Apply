@@ -29,12 +29,7 @@ def automation(linkedin_username, linkedin_password, search_query):
     def get_driver():
         options = Options()
         options.add_argument("--disable-gpu")
-        options.add_argument("--no-sandbox")  # Important for certain environments
-        options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
-        # Remove --headless to allow the browser to open
         # options.add_argument("--headless")  # Run in headless mode to avoid opening a browser
-        
-        # Use ChromeDriverManager to manage driver versions
         driver = webdriver.Chrome(
             service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),
             options=options,
