@@ -1,5 +1,5 @@
 import streamlit as st
-from main import automation
+from trail import automation
 
 st.title("LinkedIn Automation")
 
