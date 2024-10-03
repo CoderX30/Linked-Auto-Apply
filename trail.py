@@ -20,12 +20,18 @@ def automation(linkedin_username, linkedin_password, search_query):
 
     # Initialize the Chrome driver
 
-    driver_path = 'chromedriver.exe'  # Replace with your WebDriver path
-    service = Service(driver_path)
-    options = webdriver.ChromeOptions()
-    options.add_argument("--start-maximized")  # Start browser maximized
-    driver = webdriver.Chrome(service=service, options=options)
-    print("OPENED CHROME")
+    # Cache the resource to avoid creating multiple drivers during reruns
+    @st.cache_resource
+    def get_driver():
+        options = Options()
+        options.add_argument("--disable-gpu")
+        options.add_argument("--headless")  # Run in headless mode to avoid opening a browser
+        driver = webdriver.Chrome(
+            service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),
+            options=options,
+        )
+        return driver
+        print("OPENED CHROME")
 
     # Open LinkedIn login page
     def open_linkedin():
