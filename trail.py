@@ -18,7 +18,7 @@ def automation(linkedin_username, linkedin_password, search_query):
 
     # Initialize the Chrome driver
 
-    driver_path = './chromedriver.exe'  # Replace with your WebDriver path
+    driver_path = 'https://github.com/CoderX30/Linked-Auto-Apply/blob/281e84193e24e3d19f3d56c43c6b48a7cd5c6514/chromedriver.exe'  # Replace with your WebDriver path
     service = Service(driver_path)
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")  # Start browser maximized
