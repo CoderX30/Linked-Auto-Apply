@@ -34,6 +34,8 @@ def automation(linkedin_username, linkedin_password, search_query):
         return driver
         print("OPENED CHROME")
 
+    driver = get_driver()
+    
     # Open LinkedIn login page
     def open_linkedin():
         driver.get('https://www.linkedin.com/login')
