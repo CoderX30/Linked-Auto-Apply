@@ -8,6 +8,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
+import chromedriver_autoinstaller
+import os
 from plyer import notification
 import time
 print("LIBRARIES IMPORTED")
@@ -28,9 +30,10 @@ def automation(linkedin_username, linkedin_password, search_query):
 
 
     chrome_options = Options()
-    chrome_options.add_argument("--headless")  # Ensures GUI is off
+    chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
+    chromedriver_autoinstaller.install()
     driver = webdriver.Chrome(options=chrome_options)
     print("OPENED CHROME")
 
