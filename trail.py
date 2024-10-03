@@ -33,7 +33,11 @@ def automation(linkedin_username, linkedin_password, search_query):
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    chromedriver_autoinstaller.install()
+    CHROME_PATH = "/usr/bin/google-chrome-stable"
+    if os.path.exists(CHROME_PATH):
+        chrome_options.binary_location = CHROME_PATH
+    else:
+        raise Exception(f"Chrome binary not found at {CHROME_PATH}")
     driver = webdriver.Chrome(options=chrome_options)
     print("OPENED CHROME")
 
