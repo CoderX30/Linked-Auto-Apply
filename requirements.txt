@@ -1,4 +1,3 @@
 selenium
 plyer
-pyautogui
 streamlit
