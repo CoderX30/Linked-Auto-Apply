@@ -11,18 +11,6 @@ from plyer import notification
 import time
 print("LIBRARIES IMPORTED")
 
-def download_chromedriver():
-  try:
-    driver = webdriver.Chrome(ChromeDriverManager().install())
-    driver.quit()  # Close the browser after verifying download
-    print("chromedriver.exe downloaded successfully!")
-  except Exception as e:
-    print("Error downloading chromedriver:", e)
-
-
-if not os.path.exists("chromedriver.exe"):
-    download_chromedriver()
-
 
 
 def automation(linkedin_username, linkedin_password, search_query):
